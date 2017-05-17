@@ -1,0 +1,129 @@
+set $mod Mod1
+
+font pango:Ubuntu Mono 14px
+
+floating_modifier $mod
+
+bindsym $mod+Return exec urxvt -e /usr/bin/zsh
+
+bindsym $mod+Shift+q kill
+
+bindsym $mod+d exec dmenu_run -b -fn "Ubuntu Mono-10" -nb "#000000" -nf "#ffffff" -sb "#31128c" -sf "#ffffff"
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+o split h
+
+bindsym $mod+u split v
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+a focus parent
+
+#bindsym $mod+d focus child
+
+set $tag1 "1:I"
+set $tag2 "2:II"
+set $tag3 "3:III"
+set $tag4 "4:IV"
+set $tag5 "5:V"
+set $tag6 "6:VI"
+
+bindsym $mod+1 workspace $tag1
+bindsym $mod+2 workspace $tag2
+bindsym $mod+3 workspace $tag3
+bindsym $mod+4 workspace $tag4
+bindsym $mod+5 workspace $tag5
+bindsym $mod+6 workspace $tag6
+
+bindsym $mod+Shift+1 move container to workspace $tag1
+bindsym $mod+Shift+2 move container to workspace $tag2
+bindsym $mod+Shift+3 move container to workspace $tag3
+bindsym $mod+Shift+4 move container to workspace $tag4
+bindsym $mod+Shift+5 move container to workspace $tag5
+bindsym $mod+Shift+6 move container to workspace $tag6
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exit
+
+bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+t exec thunderbird
+bindsym $mod+Shift+p exec project
+bindsym $mod+Shift+m exec urxvtc -name "ncmpcpp" -e zsh -c ncmpcpp
+bindsym $mod+Ctrl+space exec switchlayout
+
+bindsym XF86KbdBrightnessUp exec asus-kbd-backlight up
+bindsym XF86KbdBrightnessDown exec asus-kbd-backlight down
+bindsym XF86Launch1 exec i3lock
+bindsym XF86AudioRaiseVolume exec "amixer set Master 3%+ unmute; killall -SIGUSR1 i3status"
+bindsym XF86AudioLowerVolume exec "amixer set Master 3%- unmute; killall -SIGUSR1 i3status"
+bindsym XF86AudioMute exec "amixer set Master toggle; killall -SIGUSR1 i3status"
+
+new_window pixel 2
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym h resize shrink width 5 px or 10 ppt
+        bindsym j resize grow height 5 px or 10 ppt
+        bindsym k resize shrink height 5 px or 10 ppt
+        bindsym l resize grow width 5 px or 10 ppt
+
+        bindsym Left resize shrink width 5 px or 10 ppt
+        bindsym Down resize grow height 5 px or 10 ppt
+        bindsym Up resize shrink height 5 px or 10 ppt
+        bindsym Right resize grow width 5 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+bar {
+  font pango:Ubuntu Mono, FontAwesome 14px
+  position top
+  strip_workspace_numbers yes
+  status_command i3status
+  colors {
+    separator #373b41
+    background #1d1f21
+    statusline #81a2be
+    focused_workspace #81a2be #81a2be #282a2e
+    active_workspace #b294bb #b294bb #ffffff
+    inactive_workspace #1d1f21 #1d1f21 #e0e0e0
+    urgent_workspace #cc6666 #cc6666 #c5c8c6
+  }
+}
+
+client.focused #81a2be #81a2be #ffffff #ffffff
+client.focused_inactive #969896 #969896 #e0e0e0 #ffffff
+client.unfocused #282a2e #282a2e #c5c8c6 #ffffff
+client.urgent #cc6666 #cc6666 #ffffff #ffffff
+
